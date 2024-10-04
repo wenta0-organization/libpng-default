@@ -42,9 +42,8 @@ $CXX $CXXFLAGS -std=c++11 -I. \
      -o $OUT/libpng_read_fuzzer \
      -lFuzzingEngine .libs/libpng16.a -lz
 
-# add seed corpus.
-find $SRC/libpng -name "*.png" | grep -v crashers | \
-     xargs zip $OUT/libpng_read_fuzzer_seed_corpus.zip
+# Run local corpus(download from fuzz introspector on 27/09/2024)
+zip -j $OUT/libpng_read_fuzzer_seed_corpus.zip $SRC/libpng/contrib/oss-fuzz/libpng_read_fuzzer/*
 
 cp $SRC/libpng/contrib/oss-fuzz/*.dict \
      $SRC/libpng/contrib/oss-fuzz/*.options $OUT/
